@@ -128,4 +128,26 @@ sudo systemctl start jenkins
 sudo systemctl status jenkins --no-pager
 
 ===============================================
-
+eks cluster creation on AWS amazon ami 8GB ram and 30GB Hardisk
+=================================================================
+sudo yum update -y
+yum install git -y
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.11/2023-03-17/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mkdir -p $HOME/bin
+cp ./kubectl $HOME/bin/kubectl
+export PATH=$HOME/bin:$PATH
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+kubectl version
+kubectl version --client
+kubectl version --short
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+eksctl version
+eksctl create cluster --name eksdemo --region us-east-1 --zones us-east-1a,us-east-1b --without-nodegroup
+eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster eksdemo --approve
+eksctl create nodegroup --cluster eksdemo --region us-east-1 --name eksdemo-ng-public --node-type t3.small --nodes 2 --nodes-min 1 --nodes-max 2 --ssh-access --ssh-public-key argocdkeypair --node-volume-size 20 --managed --asg-access --external-dns-access --full-ecr-access --appmesh-access --alb-ingress-access
+aws eks update-kubeconfig --region us-east-1 --name eksdemo
+kubectl get nodes
+=========================================================================================
