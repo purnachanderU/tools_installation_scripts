@@ -2,7 +2,7 @@ docker installation
 --------------------------------------------------------
 #!/bin/bash
 
-# Update packages sonarqube passwd: Admin@1234567 jenkins admin 1234  (sonarqube  dockerhub passwd/github passwd = 809999@Hi199
+# Update packages sonarqube passwd: Admin@1234567 jenkins admin 1234  (sonarqube 
 #sonarqube Jenkins1  sqa_63408047529534e5e366a63e034a25e7fb228d9f 
 sudo apt update -y
 
