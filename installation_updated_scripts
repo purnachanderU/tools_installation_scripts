@@ -1,3 +1,4 @@
+##### helm installation url https://jhooq.com/getting-start-with-helm-chart/ ##########
 ############################## Jenkins Installation steps  ############################################
 sudo rm -f /etc/apt/sources.list.d/jenkins.list
 sudo rm -f /usr/share/keyrings/jenkins-keyring.asc
