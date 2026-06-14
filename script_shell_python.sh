@@ -24,6 +24,10 @@ print(rev)
 s = "Kar.manchi"
 
 print(s[::-1])
-
-
-
+###########################
+str="hello.worllld"
+print(str[::-1])
+rev=""
+for ch in str:
+    rev = ch + rev
+print(rev)
