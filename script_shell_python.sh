@@ -31,3 +31,10 @@ rev=""
 for ch in str:
     rev = ch + rev
 print(rev)
+
+####################
+st = "hello.devops"
+
+parts = st.split(".")
+print(parts[0])
+print(parts[1])
