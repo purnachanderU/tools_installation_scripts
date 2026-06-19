@@ -55,3 +55,12 @@ for i in st:
     ch = i + ch
 print("Reverse using loop:", ch)
 ######################################################
+### useradd script ###################################
+sudo useradd -m ansible
+sudo mkdir -p /home/ansible/.ssh
+sudo cp ~/.ssh/authorized_keys /home/ansible/.ssh/
+sudo chown -R ansible:ansible /home/ansible/.ssh
+sudo chmod 700 /home/ansible/.ssh
+sudo chmod 600 /home/ansible/.ssh/authorized_keys
+echo "ansible ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ansible
+#########################################################################
