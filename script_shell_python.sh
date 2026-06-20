@@ -64,3 +64,31 @@ sudo chmod 700 /home/ansible/.ssh
 sudo chmod 600 /home/ansible/.ssh/authorized_keys
 echo "ansible ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ansible
 #########################################################################
+######## 
+mylist=[1,-2,3,2,5,4,5,-2,-3,4,-5,6,-6,-9,-9,-3,-2]
+dup = []
+for i in mylist:
+    if mylist.count(i) > 1 and i not in dup:
+        dup.append(i)
+############################################################################
+mylist=[1,2,3,2,5,4,5]
+newlist = []
+for i in mylist:
+    if i not in dup:
+        newlist.append(i)
+print(newlist)
+################################################################
+###### using set will #########################################
+mylist=[1,2,3,2,5,4,5,-2,-3,4,-5,6,-6,-9,-9]
+seen = set()
+dup = set()
+newlist = []
+for i in mylist:
+    if i in seen:
+        dup.add(i)
+    else:
+        seen.add(i)
+        newlist.append(i)
+print("Duplicates :", list(dup))
+print("New List   :", newlist)
+#####################################################
