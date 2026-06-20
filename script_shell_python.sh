@@ -92,3 +92,18 @@ for i in mylist:
 print("Duplicates :", list(dup))
 print("New List   :", newlist)
 #####################################################
+##################################################
+mylist=[1,2,3,2,5,4,5,-2,-3,4,-5,6,-6,-9,-9]
+seen = set()
+dup = set()
+newlist = []
+for i in mylist:
+    if i in seen:
+        dup.add(i)
+    else:
+        seen.add(i)
+        newlist.append(i)
+
+print("Duplicates :", sorted(dup))
+print("New List   :", sorted(newlist))
+###################################################
