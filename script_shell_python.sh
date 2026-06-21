@@ -107,3 +107,14 @@ for i in mylist:
 print("Duplicates :", sorted(dup))
 print("New List   :", sorted(newlist))
 ###################################################
+#######py revers.py
+[1, 2, 3, 4, 5]
+mylist_rev [5, 5, 3, 2, 5, 4, 3, 2, 1]
+mylist_sort [1, 2, 2, 3, 3, 4, 5, 5, 5]
+[ansible@ip-172-31-30-204 pythonf]$ cat revers.py
+mylist = [1,2,3,4,5,2,3,5,5]
+print(list(set(mylist)))
+mylist.reverse()
+print("mylist_rev", mylist)
+mylist.sort()
+print("mylist_sort", mylist)
