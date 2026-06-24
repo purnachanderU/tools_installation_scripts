@@ -118,3 +118,6 @@ mylist.reverse()
 print("mylist_rev", mylist)
 mylist.sort()
 print("mylist_sort", mylist)
+########################################
+###https://github.com/N4si/cloud-native-monitoring-app/blob/main/README.md
+###https://github.com/N4si/K8s-voting-app
