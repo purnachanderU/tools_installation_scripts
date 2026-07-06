@@ -34,11 +34,9 @@ print(rev)
 
 ########################################################
 st = "hello.devops"
-
 parts = st.split(".")
 print(parts[0])
 print(parts[1])
-
 ##########import subprocess #################################
 import subprocess
 st = "hello.devops"
@@ -121,3 +119,14 @@ print("mylist_sort", mylist)
 ########################################
 ###https://github.com/N4si/cloud-native-monitoring-app/blob/main/README.md
 ###https://github.com/N4si/K8s-voting-app
+######################################
+import requests
+#log_url = "https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs/apache_logs"
+log_url = input("Enter the log_url: ")
+response = requests.get(log_url)
+logs = response.text.splitlines()
+#print(logs)
+for log in logs:
+    if '404' in log:
+        print(log)
+#####################################################
