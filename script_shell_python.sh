@@ -131,15 +131,19 @@ for log in logs:
         print(log)
 #####################################################
 import docker
-
 client = docker.from_env()
-
 image_name = input("Enter the docker image name: ")
-
 client.images.pull(image_name)
-
 print("pulling the image")
-
 container = client.containers.run(image_name, detach=True)
 print("container is running")
+#########################################################
+def greet(name="Guest"):
+    print(f"Hello {name}, welcome to the parameter.")
+name = input("Enter the name: ")
+if name:
+    greet(name)
+else:
+    greet()
+
 
