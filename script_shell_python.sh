@@ -153,5 +153,16 @@ for log in open(logfile):
     if "404" in log:
         count+=1
 print(count)
+#######################################
+withopenread.py
+logfile = "/home/ubuntu/logfolder/logfile2.txt"
+
+count=0
+with open(logfile, 'r') as file:
+    for line in file:
+        if "404" in line:
+            count+=1
+print(count)
+
 
 
