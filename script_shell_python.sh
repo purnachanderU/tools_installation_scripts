@@ -145,5 +145,13 @@ if name:
     greet(name)
 else:
     greet()
+##################################
+correctf.py
+logfile = "/home/ubuntu/logfolder/logfile2.txt"
+count=0
+for log in open(logfile):
+    if "404" in log:
+        count+=1
+print(count)
 
 
