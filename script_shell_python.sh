@@ -187,6 +187,25 @@ fi
 if [ $DISK -gt 80 ]; then
     echo "Disk Alert"
 fi
+==================================================
+import psutil (psutil it has to installed)
+thresold=80
+cpu=psutil.cpu_percent(interval=1)
+memory=psutil.virtual_memory().percent
+diskusage=psutil.disk_usage("/").percent
+if cpu > thresold:
+    print(f"cpu usage is above thresold {cpu}%")
+else:
+    print(f"cpu usage is normal {cpu}%")
+if diskusage > thresold:
+    print(f"disk usage is above thresold {diskusage}%")
+else:
+    print(f"disk usage is normal {diskusage}%")
+if memory > thresold:
+    print(f" memory utilization is above thresold {memory}%")
+else:
+    print(f"memory utilization is normal {memory}%")
+
 
 
 
