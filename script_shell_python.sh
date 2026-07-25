@@ -163,6 +163,32 @@ with open(logfile, 'r') as file:
         if "404" in line:
             count+=1
 print(count)
+#####################################################
+#!/bin/bash
+thresold=80
+CPU=$(top -bn1| grep 'Cpu(s)' | awk '{print int($2+$4)}')
+Memory=$(free | awk '/Mem:/ {print int($3/$2*100)}')
+Disk=$(df / | awk 'NR=2 {gsub("%",""); print $5}')
+=======================
+#!/bin/bash
+CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print int($2+$4)}')
+MEMORY=$(free | awk '/Mem:/ {print int($3/$2*100)}')
+DISK=$(df / | awk 'NR==2 {gsub("%",""); print $5}')
+if [ $CPU -gt 80 ]; then
+    echo "CPU Alert"
+else
+    echo " CPU is NOrmal ${CPU}%"
+fi
+if [ $MEMORY -gt 80 ]; then
+    echo "Memory Alert"
+else
+    echo " Memorey is usage is normal ${MEMORY}%"
+fi
+if [ $DISK -gt 80 ]; then
+    echo "Disk Alert"
+fi
+
+
 
 
 
