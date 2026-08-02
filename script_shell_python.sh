@@ -206,6 +206,43 @@ if memory > thresold:
 else:
     print(f"memory utilization is normal {memory}%")
 
+################################################################
+import requests
+enter_apiurl=input("enter_apiurl for logcount: ")
+response=requests.get(enter_apiurl)
+logs=response.text.splitlines()
+count=0
+for log in logs:
+    if "404" in log:
+        count+=1
+print(count)
+enter_logpath=input("Enter log path: ")
+try:
+    enter_logpath=input("Enter log path: ")
+except FilenotFound as ex:
+    print(ex)
+count=0
+with open(enter_logpath , 'r') as file:
+    for line in file:
+        if "404" in line:
+            count+=1
+print(count)'''
+enter_logpath = input("Enter log path: ").strip()   # Get path once
+count=0
+try:
+    with open(enter_logpath, 'r') as file:
+        for line in file:
+            if "404" in line:
+                count+=1
+    print(count)
+except FileNotFoundError as ex:
+    print(f"Error: {ex}")
+    print("plese enter correct file name:")
+except Exception as e:          # optional: catch other unexpected errors
+    print(f"Unexpected error: {e}")
+##################################################################################3
+
+
 
 
 
