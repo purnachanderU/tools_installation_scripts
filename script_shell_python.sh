@@ -240,7 +240,17 @@ except FileNotFoundError as ex:
     print("plese enter correct file name:")
 except Exception as e:          # optional: catch other unexpected errors
     print(f"Unexpected error: {e}")
-##################################################################################3
+##################################################################################
+zeors will print last
+X = [0, 1, 4, 0, 3, 6, 0, 9, 9]
+output = []
+for i in X:
+    if i != 0:
+        output.append(i)
+for i in X:
+    if i == 0:
+        output.append(i)
+print(output)
 
 
 
