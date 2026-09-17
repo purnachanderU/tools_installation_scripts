@@ -290,8 +290,22 @@ for host in servers:
     except Exception as e:
         print(f"❌ Failed on {host}: {e}")
 
-
-
+######################################
+#!/usr/bin/env python3
+import subprocess
+USERNAME = "ansible"
+SCRIPT   = "/home/ansible/startup.sh"
+with open("servers.txt") as f:
+    servers = [line.strip() for line in f if line.strip()]
+for host in servers:
+    print(f"\n=== {host} ===")
+    cmd = ["ssh", f"{USERNAME}@{host}", f"bash {SCRIPT}"]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode == 0:
+        print(result.stdout)
+        print(f"✅ Done on {host}")
+    else:
+        print(f"❌ Failed on {host}: {result.stderr}")
 
 
 
