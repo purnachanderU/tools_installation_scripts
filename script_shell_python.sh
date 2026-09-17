@@ -263,6 +263,32 @@ if s.connect_ex((host, port)) == 0:
     print(f"Port {port} on {host} is OPEN")
 else:
     print(f"Port {port} on {host} is CLOSED")
+######################################################
+#!/usr/bin/env python3
+import paramiko
+USERNAME = "ansible"
+PASSWORD = "your_password"     # skip if using SSH keys
+SCRIPT   = "/home/ansible/startup.sh"
+# Read server list
+with open("servers.txt") as f:
+    servers = [line.strip() for line in f if line.strip()]
+for host in servers:
+    print(f"\n=== {host} ===")
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(host, username=USERNAME, password=PASSWORD, timeout=10)
+        # Run the script
+        stdin, stdout, stderr = ssh.exec_command(f"bash {SCRIPT}")
+        # Print output
+        print(stdout.read().decode())
+        err = stderr.read().decode()
+        if err:
+            print("ERROR:", err)
+        ssh.close()
+        print(f"✅ Done on {host}")
+    except Exception as e:
+        print(f"❌ Failed on {host}: {e}")
 
 
 
