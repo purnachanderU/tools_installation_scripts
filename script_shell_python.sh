@@ -251,6 +251,18 @@ for i in X:
     if i == 0:
         output.append(i)
 print(output)
+########################################################
+#!/usr/bin/env python3
+import socket
+# Read port from command line (interactive input)
+port = int(input("Enter port number: "))
+host = "localhost"
+s = socket.socket()
+s.settimeout(2)
+if s.connect_ex((host, port)) == 0:
+    print(f"Port {port} on {host} is OPEN")
+else:
+    print(f"Port {port} on {host} is CLOSED")
 
 
 
