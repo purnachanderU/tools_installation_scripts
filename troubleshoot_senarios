@@ -1,0 +1,16 @@
+when key got missimatched or assingned wrong key
+================================================
+1.ec2-instance public key got assinged with anotherkey
+troubleshoot
+A.key mismatched 
+B.and the sg the ssh 22 assinged my ip 
+C.when connect to the using aws console its not connecting
+due the ipv4 assinged the my ip so changed to 0000 then
+able to connect
+D.then cd to .ssh directory
+cat > authorized_keys (it will override)
+paste publickey ex_ssh-ed25519 AAAAC <---- enter
+ctrl+D
+ssh -vvv -i ~/.ssh/id_ed25519 ec2-user@IPV4 (connected
+------------------------------------------------------------
+
