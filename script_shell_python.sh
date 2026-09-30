@@ -68,7 +68,30 @@ dup = []
 for i in mylist:
     if mylist.count(i) > 1 and i not in dup:
         dup.append(i)
-############################################################################
+##########################################################################
+(find duplicate )
+numbers = [1, 2, 3, 2, 4, 5, 1]
+seen = set()
+duplicates = set()
+for num in numbers:
+    if num in seen:
+        duplicates.add(num)
+    else:
+        seen.add(num)
+print(duplicates)
+########################################################################
+Seconde largest
+numbers = [10, 5, 20, 8, 30]
+largest = float('-inf')
+second = float('-inf')
+for num in numbers:
+    if num > largest:
+        second = largest
+        largest = num
+    elif num > second and num != largest:
+        second = num
+print(second)
+##########################################################################
 mylist=[1,2,3,2,5,4,5]
 newlist = []
 for i in mylist:
