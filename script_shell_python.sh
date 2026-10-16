@@ -329,6 +329,26 @@ for host in servers:
         print(f"✅ Done on {host}")
     else:
         print(f"❌ Failed on {host}: {result.stderr}")
+########################################################################
+import requests
+import re
+from collections import Counter
+#url = "https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs/apache_logs"
+url = input("Enter the url: ")
+response = requests.get(url)
+if response.status_code == 200:
+    content = response.text
+    domains = re.findall(
+        r'https?://(?:www\.)?([a-zA-Z0-9.-]+\.(?:com|net|org))',
+        content
+    )
+    count = Counter(domains)
+    for domain, total in count.items():
+        print(domain, ":", total)
+
+else:
+    print("Failed to download file")
+
 
 
 
