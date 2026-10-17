@@ -329,6 +329,49 @@ for host in servers:
         print(f"✅ Done on {host}")
     else:
         print(f"❌ Failed on {host}: {result.stderr}")
+#####################################################################
+import subprocess
+
+USERNAME = "automationuser"
+PASSWORD = "$PASSWORD"
+SCRIPT = "installation.sh"
+REMOTE_PATH = "/tmp/installation.sh"
+
+with open("servers.txt") as f:
+    servers = [line.strip() for line in f if line.strip()]
+for host in servers:
+    print(f"\n=== {host} ===")
+    # 1. Copy script to target machine
+    copy_cmd = [
+        "sshpass", "-p", PASSWORD, "scp", "-o", "StrictHostKeyChecking=no", SCRIPT, f"{USERNAME}@{host}:{REMOTE_PATH}"
+    ]
+    result = subprocess.run(
+        copy_cmd,
+        capture_output=True,
+        text=True
+    )
+    if result.returncode != 0:
+        print(f"❌ Copy failed on {host}: {result.stderr}")
+        continue
+    print(f" Script copied to {host}")
+    # 2. Execute script on target machine
+    execute_cmd = [
+        "sshpass", "-p", PASSWORD,
+        "ssh",
+        "-o", "StrictHostKeyChecking=no",
+        f"{USERNAME}@{host}",
+        f"sudo bash {REMOTE_PATH}"
+    ]
+    result = subprocess.run(
+        execute_cmd,
+        capture_output=True,
+        text=True
+    )
+    if result.returncode == 0:
+        print(result.stdout)
+        print(f"✅ Installation completed on {host}")
+    else:
+        print(f"❌ Installation failed on {host}: {result.stderr}")
 ########################################################################
 import requests
 import re
