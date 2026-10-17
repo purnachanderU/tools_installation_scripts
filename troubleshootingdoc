@@ -1,0 +1,10 @@
+lsattr /etc/ssh/sshd_config <list the attribute>
+op:------i------------------ /etc/ssh/sshd_config (i means the file is locked)
+chattr -i /etc/ssh/sshd_config (change the attribute here -i remove +i means add)
+################# to set the alias ###########################
+echo 'alias py=python' >> ~/.bashrc
+source ~/.bashrc
+sudo ln -s $(which python3) /usr/local/bin/py
+################# will fail the first time with an error about missing host key ###################################
+when doing ssh user@host first time getting error due to know host keep yes or know 
+example ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) this will set yes make it assist/ work
