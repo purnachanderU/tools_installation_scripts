@@ -373,6 +373,34 @@ for host in servers:
     else:
         print(f"❌ Installation failed on {host}: {result.stderr}")
 ########################################################################
+import paramiko
+import os
+USERNAME = "automationuser"
+PASSWORD = os.getenv("SSH_PASSWORD")   # Read from environment variable
+SCRIPT   = "/home/automationuser/startup.sh"
+if not PASSWORD:
+    print("❌ Password not found in environment variable SSH_PASSWORD")
+    exit(1)
+with open("servers.txt") as f:
+    servers = [line.strip() for line in f if line.strip()]
+for host in servers:
+    print(f"\n=== {host} ===")
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        transport = paramiko.Transport((host, 22))
+        transport.connect(username=USERNAME, password=PASSWORD)
+        ssh._transport = transport
+        stdin, stdout, stderr = ssh.exec_command(f"sudo bash {SCRIPT}")
+        print(stdout.read().decode())
+        err = stderr.read().decode()
+        if err:
+            print("ERROR:", err)
+        ssh.close()
+        print(f"✅ Done on {host}")
+    except Exception as e:
+        print(f"❌ Failed on {host}: {e}")
+########################################################################
 import requests
 import re
 from collections import Counter
