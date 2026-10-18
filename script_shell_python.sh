@@ -400,6 +400,35 @@ for host in servers:
         print(f"✅ Done on {host}")
     except Exception as e:
         print(f"❌ Failed on {host}: {e}")
+#######################################################################
+import psutil
+import paramiko
+servers = [
+    {"host": "server1", "check": "cpu"},
+    {"host": "server2", "check": "memory"},
+    {"host": "server3", "check": "disk"}
+]
+threshold = 60
+username = "ec2-user"
+password = "os.getenv("SSH_PASSWORD")"
+for server in servers:
+    host = server["host"]
+    check = server["check"]
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(host, username=username, password=password)
+    if check == "cpu":
+        utilization = psutil.cpu_percent(interval=1)
+    elif check == "memory":
+        utilization = psutil.virtual_memory().percent
+    elif check == "disk":
+        utilization = psutil.disk_usage("/").percent
+    if utilization > threshold:
+        print(f"ALERT: {host} {check} utilization is {utilization}%")
+    else:
+        print(f"OK: {host} {check} utilization is {utilization}%")
+
+    ssh.close()
 ########################################################################
 import requests
 import re
