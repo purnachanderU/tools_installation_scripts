@@ -449,6 +449,27 @@ if response.status_code == 200:
 else:
     print("Failed to download file")
 
+###########################################################################################################
+#!/bin/bash
+file="$1"
+count=0
+while read -r line; do
+    set -- $line          # splits the line into positional parameters
+    count=$((count + $#))
+done < "$file"
+echo "Total words: $count"
+############################################################################################################
+#!/bin/bash
+awk '{ total += NF } END { print "Total words:", total }' "$1"
+#############################################################################################################
+#!/bin/bash
+count=0
+for word in $(cat "$1"); do
+    count=$((count + 1))
+done
+echo "Total words: $count"
+##############################################################################################################
+
 
 
 
