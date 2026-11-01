@@ -469,6 +469,14 @@ for word in $(cat "$1"); do
 done
 echo "Total words: $count"
 ##############################################################################################################
+logfile_path = "app.log"
+report_path = "report.txt"
+with open(logfile_path, "r") as infile, open(report_path, "w") as outfile:
+    for line in infile:
+        lower = line.lower()
+        if "error" in lower or "critical" in lower:
+            outfile.write(line)
+print(f"Done. Matching lines written to {report_path}")
 
 
 
