@@ -477,6 +477,17 @@ with open(logfile_path, "r") as infile, open(report_path, "w") as outfile:
         if "error" in lower or "critical" in lower:
             outfile.write(line)
 print(f"Done. Matching lines written to {report_path}")
+#####################################################################################################
+import json
+with open('students.json', 'r') as f:
+    students = json.load(f)
+for student in students:
+    name = student["name"]
+    marks = student["marks"]
+    total = sum(marks.values())  
+    average = total / len(marks)
+    
+    print(f"{name}: {average:.2f}")
 
 
 
